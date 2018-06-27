@@ -1,6 +1,0 @@
-model_checkpoint_path: "/home/pbountou/projects/training_model/tensorflow_logs/opt=GDS,lr=1E-05,fc=2,drop=0.5,img=48x96,batch=100_only_omega/train-900"
-all_model_checkpoint_paths: "/home/pbountou/projects/training_model/tensorflow_logs/opt=GDS,lr=1E-05,fc=2,drop=0.5,img=48x96,batch=100_only_omega/train-500"
-all_model_checkpoint_paths: "/home/pbountou/projects/training_model/tensorflow_logs/opt=GDS,lr=1E-05,fc=2,drop=0.5,img=48x96,batch=100_only_omega/train-600"
-all_model_checkpoint_paths: "/home/pbountou/projects/training_model/tensorflow_logs/opt=GDS,lr=1E-05,fc=2,drop=0.5,img=48x96,batch=100_only_omega/train-700"
-all_model_checkpoint_paths: "/home/pbountou/projects/training_model/tensorflow_logs/opt=GDS,lr=1E-05,fc=2,drop=0.5,img=48x96,batch=100_only_omega/train-800"
-all_model_checkpoint_paths: "/home/pbountou/projects/training_model/tensorflow_logs/opt=GDS,lr=1E-05,fc=2,drop=0.5,img=48x96,batch=100_only_omega/train-900"
