@@ -3,6 +3,28 @@ import cv2
 import numpy as np
 import tensorflow as tf
 
+def fun_img_preprocessing(image, image_final_height, image_final_width):
+
+    # crop the 1/3 upper part of the image
+    new_img = image[480/3:, :, :]
+
+    # transform the color image to grayscale
+    new_img = cv2.cvtColor( new_img[:, :, :], cv2.COLOR_RGB2GRAY )
+
+    # resize the image from 320x640 to 48x96
+    new_img = cv2.resize( new_img, ( image_final_width, image_final_height ) ) # returns image 32 x 64 and not 64 x 32
+
+    # normalize images to range [0, 1] (devide each pixel by 255)
+    # first transform the array of int to array of float else the division with 255 will return an array of 0s
+    new_img = new_img.astype(float)
+    new_img = new_img / 255
+
+    # new_part
+    new_img = np.reshape(new_img, (1, -1))
+
+    return new_img
+
+
 def prediction(logs_path, image):
 
     ############################
