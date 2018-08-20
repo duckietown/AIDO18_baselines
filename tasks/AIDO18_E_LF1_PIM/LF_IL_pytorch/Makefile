@@ -5,7 +5,7 @@ VIRTUALENV = LF_IL_pytorch_virtualenv
 # - learn: Performs reinforcement learning and saves the learned agent
 
 install:
-				virtualenv -p python3 $(VIRTUALENV); \
+				virtualenv -p python $(VIRTUALENV); \
 				source $(VIRTUALENV)/bin/activate; \
 				pip install -e .;
 
