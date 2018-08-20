@@ -1,9 +1,9 @@
 from setuptools import setup
 
 setup(
-    name='AIDO18_LF_IL_tensorflow',
-    version='2018.08.18',
-    keywords='duckietown, logs, imitation learning, tensorflow',
+    name='AIDO18_LF_IL_pytorch',
+    version='2018.08.20',
+    keywords='duckietown, logs, imitation learning, pytorch',
     install_requires=[
         'h5py>=2.8.0',
         'pyyaml',
@@ -22,7 +22,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'LF_IL_tensorflow-start=AIDO18_LF_IL_tensorflow.launcher:main',
+            'LF_IL_pytorch-start=AIDO18_LF_IL_pytorch.launcher:main',
         ],
     },
 )
