@@ -25,6 +25,8 @@ learn:
         #TODO: make sure learned agent is saved
 
 container:
+				source $(VIRTUALENV)/bin/activate; \
+				python src/freeze_graph.py;
         #TODO: command to create new container
 
 evaluate-sim-local:

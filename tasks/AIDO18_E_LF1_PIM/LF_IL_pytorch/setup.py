@@ -5,7 +5,7 @@ setup(
     version='2018.08.18',
     keywords='duckietown, logs, imitation learning, tensorflow',
     install_requires=[
-        'h5py', #>=2.8.0',
+        'h5py>=2.8.0',
         'pyyaml',
         'rospkg',
         'sklearn',
