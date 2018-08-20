@@ -5,27 +5,27 @@ VIRTUALENV = LF_IL_pytorch_virtualenv
 # - learn: Performs reinforcement learning and saves the learned agent
 
 install:
-				virtualenv -p python $(VIRTUALENV); \
-				source $(VIRTUALENV)/bin/activate; \
-				pip install -e .;
+				virtualenv -p python3 $(VIRTUALENV); \
+				. $(VIRTUALENV)/bin/activate; \
+				pip3 install -e .;
 
 download:
-				source $(VIRTUALENV)/bin/activate; \
+				. $(VIRTUALENV)/bin/activate; \
 				python src/dataset.py;
 
 preprocess:
-				source $(VIRTUALENV)/bin/activate; \
+				. $(VIRTUALENV)/bin/activate; \
 				python src/extract_data.py -s logdir -t datadir;
 
 learn:
-				source $(VIRTUALENV)/bin/activate; \
+				. $(VIRTUALENV)/bin/activate; \
 				python src/train.py -s datadir -t modeldir;
 				#cd $(AGENT); \
         #docker-compose pull && docker-compose up
         #TODO: make sure learned agent is saved
 
 container:
-				source $(VIRTUALENV)/bin/activate; \
+				. $(VIRTUALENV)/bin/activate; \
 				python src/freeze_graph.py;
         #TODO: command to create new container
 
