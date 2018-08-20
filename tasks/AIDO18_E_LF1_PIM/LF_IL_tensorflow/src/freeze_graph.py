@@ -1,0 +1,59 @@
+#!/usr/bin/env python
+
+import os
+from tensorflow.python.tools import freeze_graph
+
+def main():
+
+    # Define the name of your model
+    model_name = 'batch=100,lr=0.0001,optimizer=GDS,epochs=1000'
+
+    # define the path to the graph from training
+    input_graph = os.path.join(os.getcwd(), 'tensorflow_logs', model_name, 'graph', 'graph.pb')
+
+    # define the path in which to save the frozen graph
+    output_graph = os.path.join(os.getcwd(), 'tensorflow_logs', model_name, 'frozen_graph', 'frozen_graph.pb')
+
+    # the frozen_graph directory must exist in order to freeze the model
+    directory = os.path.join(os.getcwd(), 'tensorflow_logs', model_name, 'frozen_graph')
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+
+    # define the checkpoint/weights you want to freeze inside the graph
+    input_checkpoint = os.path.join(os.getcwd(), 'tensorflow_logs', model_name, 'train-900')
+
+    # define the name of the prediction layer
+    # This name can be easily extracted using Tensorboard. In GRAPHS tab of Tensorboard, check the inputs of Loss scope.
+    # In my case they are "y_true_commands" and "fc_layer_2/BiasAdd".The CNN's predictions are provided from the
+    # "fc_layer_2/BiasAdd" element, whereas the true omega velocities from the "y_true_commands". Here we have to define
+    # the element which provides the CNN's predictions and thus I defined as output_node_names the "fc_layer_2/BiasAdd".
+    output_node_names = "fc_layer_2/BiasAdd"
+
+    # The following settings should remain the same
+    input_saver = ""
+    input_binary = True
+    restore_op_name = 'save/restore_all'
+    filename_tensor_name = 'save/Const:0'
+    clear_devices = True
+    initializer_nodes = ""
+    variable_names_blacklist = ""
+
+    # Freeze the graph
+    freeze_graph.freeze_graph(
+        input_graph,
+        input_saver,
+        input_binary,
+        input_checkpoint,
+        output_node_names,
+        restore_op_name,
+        filename_tensor_name,
+        output_graph,
+        clear_devices,
+        initializer_nodes,
+        variable_names_blacklist
+    )
+
+    print("The frozen graph is saved in {}.".format(output_graph))
+
+if __name__ == '__main__':
+    main()
