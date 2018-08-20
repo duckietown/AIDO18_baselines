@@ -14,9 +14,11 @@ setup(
         'numpy<=1.14.5',
         'pandas>=0.23.0',
         'tables>=3.4.3',
-        'tensorboard>=1.8.0',
-        'tensorflow>=1.8.0',
+        'torch',
+        'torchvision',
         'requests',
+        'pathlib',
+        'image',
     ],
     entry_points={
         'console_scripts': [
