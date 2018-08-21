@@ -1,12 +1,7 @@
 #!/usr/bin/env python3
 
 """
-Pure pursuit
-Control the simulator or Duckiebot using a a PID controller (heuristic).
-
-References:
-Path Tracking for a Miniature Robot - http://www8.cs.umu.se/kurser/TDBD17/VT06/utdelat/Assignment%20Papers/Path%20Tracking%20for%20a%20Miniature%20Robot.pdf
-Implementation of the Pure Pursuit Tracking Algorithm: https://www.ri.cmu.edu/pub_files/pub3/coulter_r_craig_1992_1/coulter_r_craig_1992_1.pdf
+Imitation learning for the lane following task
 """
 
 import time
@@ -65,12 +60,16 @@ def gym2pytorch(img):
     return transf(img).view(1, 1, 80, 160)
 
 
-
-if __name__ == '__main__':
+def main():
     vel_r, vel_l = 0.0, 0.0
+
+    # parser = argparse.ArgumentParser()
+    # parser.add_argument("--model_path", "-m", required=True, help="the path to the model weights")
+    # args = parser.parse_args()
     # TODO: correct path to something more usable
     path = r"/Users/julianzilly/Desktop/PhD/AIDO/AIDO18_baselines/tasks/" \
            r"AIDO18_E_LF1_PIM/LF_IL_pytorch/modeldir/checkpoint_2000.pth"
+
     model_path = pathlib.Path(path)
 
     while True:
@@ -94,3 +93,7 @@ if __name__ == '__main__':
                     time.sleep(0.7)
             obs = env.reset()
             env.render()
+
+
+if __name__ == '__main__':
+    main()
