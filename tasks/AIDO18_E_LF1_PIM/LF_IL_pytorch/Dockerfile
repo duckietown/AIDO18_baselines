@@ -1,5 +1,5 @@
 # TODO: Make a RPi compatible image
-FROM duckietown/pytorch
+FROM pytorch/pytorch
 
 RUN apt-get update -y && \
     apt-get install -y --no-install-recommends git && \
