@@ -1,5 +1,5 @@
 VIRTUALENV = LF_IL_virtualenv
-AG_VERSION = 2018.8.23
+AG_VERSION = 2018.8.18
 # Makefile to structure work on the AI-DO baselines.
 #
 # - install: Installs dependencies need to perform reinforcement learning

@@ -1,6 +1,6 @@
 VIRTUALENV = LF_IL_pytorch_virtualenv
 DUCKIETOWN = gym-duckietown
-AG_VERSION = 2018.8.23
+AG_VERSION = 2018.8.20
 
 # Makefile to structure work on the AI-DO baselines.
 #
@@ -31,7 +31,7 @@ learn:
 build-image:
 				. $(VIRTUALENV)/bin/activate; \
 				python src/freeze_graph.py; \
-				docker build --tag duckietown/il-baseline-pytorch:$(AG_VERSION) .;
+				docker build --tag duckietown/il-baseline-pytorch:gpu-$(AG_VERSION) .;
 
 evaluate-sim-local:
 				AGENT_VERSION=$(AG_VERSION); \

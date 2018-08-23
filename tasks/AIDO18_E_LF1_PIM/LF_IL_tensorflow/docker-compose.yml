@@ -16,7 +16,7 @@ services:
         build: ./ 
         volumes: 
         - .:/workspace/agent/ 
-        image: "duckietown/il-baseline-tensorflow:${AGENT_VERSION}"
+        image: "duckietown/il-baseline-tensorflow:gpu-${AGENT_VERSION}"
         command: /usr/local/bin/python agent/src/julian_your_script_goes_here.py
         depends_on: 
         - "gym-duckietown-server" 
