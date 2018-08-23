@@ -1,4 +1,5 @@
 VIRTUALENV = LF_IL_virtualenv
+AG_VERSION = 2018.8.23
 # Makefile to structure work on the AI-DO baselines.
 #
 # - install: Installs dependencies need to perform reinforcement learning
@@ -24,15 +25,14 @@ learn:
         #docker-compose pull && docker-compose up
         #TODO: make sure learned agent is saved
 
-container:
+build-image:
 				source $(VIRTUALENV)/bin/activate; \
-				python src/freeze_graph.py;
-        #TODO: command to create new container
+                                python src/freeze_graph.py; \
+                                docker build --tag duckietown/il-baseline-tensorflow:$(AG_VERSION) .;
 
 evaluate-sim-local:
-        git clone https://github.com/duckietown/gym-duckietown
-				cd $(AGENT) \
-        docker run duckietown/$(AGENT)
+				AGENT_VERSION=$(AG_VERSION); \
+                                docker-compose up;
 
 evaluate-real-local:
 				ls # still todo
