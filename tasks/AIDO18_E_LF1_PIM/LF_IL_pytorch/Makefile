@@ -1,5 +1,7 @@
 VIRTUALENV = LF_IL_pytorch_virtualenv
 DUCKIETOWN = gym-duckietown
+AG_VERSION = 2018.8.20
+
 # Makefile to structure work on the AI-DO baselines.
 #
 # - install: Installs dependencies need to perform reinforcement learning
@@ -26,15 +28,14 @@ learn:
 				. $(VIRTUALENV)/bin/activate; \
 				python src/train.py -s datadir -t modeldir;
 
-container:
+build-image:
 				. $(VIRTUALENV)/bin/activate; \
-				python src/freeze_graph.py;
-        #TODO: command to create new container
+				python src/freeze_graph.py; \
+				docker build --tag duckietown/il-baseline-pytorch:gpu-$(AG_VERSION) .;
 
 evaluate-sim-local:
-				. $(VIRTUALENV)/bin/activate; \
-				python src/imitation_learning_pt.py;
-				# TODO: record logs and evaluate
+				AGENT_VERSION=$(AG_VERSION); \
+				docker-compose up;
 
 evaluate-real-local:
 				ls # still todo

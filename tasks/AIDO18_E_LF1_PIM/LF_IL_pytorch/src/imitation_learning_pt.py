@@ -67,6 +67,9 @@ def main():
     # parser.add_argument("--model_path", "-m", required=True, help="the path to the model weights")
     # args = parser.parse_args()
     # TODO: correct path to something more usable
+    # TODO: Should be using the duckietown-slimremote wrapper instead of gym-duckietown directly (if
+    #       you want this to run on the RPi): https://github.com/duckietown/duckietown-slimremote#api
+
     path = r"/Users/julianzilly/Desktop/PhD/AIDO/AIDO18_baselines/tasks/" \
            r"AIDO18_E_LF1_PIM/LF_IL_pytorch/modeldir/checkpoint_2000.pth"
 
