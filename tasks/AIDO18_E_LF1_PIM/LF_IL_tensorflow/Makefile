@@ -1,5 +1,5 @@
 VIRTUALENV = LF_IL_virtualenv
-AG_VERSION = 2018.8.18
+AG_VERSION = 2018.9.20
 
 USERNAME = megaduck
 DUCKIEBOT = megabot08
@@ -85,7 +85,7 @@ build-real-local-rpi:
 demo-real-local-rpi:
 				
 				sshpass -p '$(PASSWORD)' ssh $(USERNAME)@$(DUCKIEBOT) '\
-				bash -c "source ~/duckietown/environment.sh; roslaunch cnn_lane_following cnn_lane_following.launch veh:=$(VEHICLE_NAME) local:=false" '
+				bash -c "source ~/duckietown/environment.sh; roslaunch cnn_lane_following cnn_lane_following.launch veh:=megabot08 local:=false" '
 
 
 evaluate-real-local:
