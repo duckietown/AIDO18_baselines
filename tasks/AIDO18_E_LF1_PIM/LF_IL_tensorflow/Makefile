@@ -78,6 +78,13 @@ test-build-real-local-rpi: (not working yet)
 				sudo apt-get install python-opencv '
 
 
+# for Breandan: 
+# copy the <CNN REPO> to duckietown org
+# make it generate an image called "rpi-cnn-lane-following" that 
+#  1) inherits from the appropriate base image
+#  2) install the ncsdk (as below)
+#  3) install the ROS packages and launch file in <CNN REPO>
+#  4) has CMD roslaunch cnn_lane_following /cnn_lane_following/cnn_lane_following.launch veh:=$(VEHICLE_NAME) local:=false 
 build-real-local-rpi:
 				
 				sudo apt-get install sshpass
@@ -88,6 +95,11 @@ build-real-local-rpi:
 				sudo make api; \
 				sudo apt-get install python-opencv; \
 				'
+
+# create a Dockerfile which does the following:
+# Dockerfile = '''
+# FROM duckietown/rpi-cnn-lane-following
+# COPY movidius_graph to /movidius_graph
 
 demo-real-local-rpi:
 				
