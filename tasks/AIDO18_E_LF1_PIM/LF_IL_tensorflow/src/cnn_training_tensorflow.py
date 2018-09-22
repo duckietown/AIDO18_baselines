@@ -11,7 +11,7 @@ def main():
 
     # define path for training dataset
     file_path_train = os.path.join(os.getcwd(), 'data', 'train', 'train_set.h5')
-    file_path_test = os.path.join(os.getcwd(), 'data', 'test', 'train_set.h5')
+    file_path_test = os.path.join(os.getcwd(), 'data', 'test', 'test_set.h5')
 
     # define batch_size (e.g 50, 100)
     batch_size = 100

@@ -56,27 +56,8 @@ build-real-local-laptop:
 				echo "Compile TensorFlow graph to Movidius graph"; \
 				. $(VIRTUALENV)/bin/activate; \
 				mkdir movidius_graph; \
-				mvNCCompile -s 12 tensorflow_logs/batch=100,lr=0.0001,optimizer=GDS,epochs=1000/frozen_graph/frozen_graph.pb -in x -on fc_layer_2/BiasAdd -o movidius_graph/movidius.graph; \
+				mvNCCompile -s 12 tensorflow_logs/batch=100,lr=0.0001,optimizer=GDS,epochs=1000/frozen_graph/frozen_graph.pb -in x -on ConvNet/fc_layer_2/BiasAdd -o movidius_graph/lane_following.graph; \
 				echo "Frozen graph is compiled to Movidius graph and saved in ./movidius_graph/ directory"; \
-
-				ls to do: automatically copy movidius_graph/movidius.graph to cnn_lane_following/src/movidius_graphs/graph.graph
-				ls to do: build docker image of cnn ros package which when called launches cnn_node
-
-
-test-build-real-local-rpi: (not working yet)
-	
-				sudo apt-get install sshpass 
-				sshpass -p '$(PASSWORD)' ssh $(USERNAME)@$(DUCKIEBOT) '\
-				wget -nc https://ncs-forum-uploads.s3.amazonaws.com/ncsdk/ncsdk-02_05_00_02-full/ncsdk-2.05.00.02.tar.gz; \
-				if [ -d ncsdk-2.05.00.02 ]; then \
-					echo "NCSDK is installed"; \
-				else \
-					tar xvf ncsdk-2.05.00.02.tar.gz; \
-					cd ncsdk-2.05.00.02; \
-					sudo make install; \
-				fi \
-				sudo apt-get install python-opencv '
-
 
 # for Breandan: 
 # copy the <CNN REPO> to duckietown org
