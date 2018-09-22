@@ -170,7 +170,8 @@ def main():
         else:
             synch_data = np.vstack((synch_data, temp_synch_data))
             synch_imgs = np.vstack((synch_imgs, temp_synch_imgs))
-            print(synch_data.shape, synch_imgs.shape)
+        
+        print("\nShape of total data: {} , shape of total images: {}\n".format(synch_data.shape, synch_imgs.shape))
 
     print("Synchronization of all data is finished.\n")
 

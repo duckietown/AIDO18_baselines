@@ -25,12 +25,12 @@ def main():
     # define the checkpoint/weights you want to freeze inside the graph
     input_checkpoint = os.path.join(os.getcwd(), 'tensorflow_logs', model_name, 'train-900')
 
-    # define the name of the prediction layer
+    # define the name of the prediction output node
     # This name can be easily extracted using Tensorboard. In GRAPHS tab of Tensorboard, check the inputs of Loss scope.
-    # In my case they are "y_true_commands" and "fc_layer_2/BiasAdd".The CNN's predictions are provided from the
-    # "fc_layer_2/BiasAdd" element, whereas the true omega velocities from the "y_true_commands". Here we have to define
-    # the element which provides the CNN's predictions and thus I defined as output_node_names the "fc_layer_2/BiasAdd".
-    output_node_names = "fc_layer_2/BiasAdd"
+    # In this case they are "vel_true" and "ConvNet/fc_layer_2/BiasAdd".The CNN's predictions are provided from the
+    # "ConvNet/fc_layer_2/BiasAdd" element, whereas the true omega velocities from the "vel_true". Here we have to define
+    # the element which provides the CNN's predictions and thus we defined as output_node_names the "ConvNet/fc_layer_2/BiasAdd".
+    output_node_names = "ConvNet/fc_layer_2/BiasAdd"
 
     # The following settings should remain the same
     input_saver = ""
