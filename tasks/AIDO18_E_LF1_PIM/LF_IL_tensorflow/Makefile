@@ -1,5 +1,5 @@
 VIRTUALENV = LF_IL_virtualenv
-AG_VERSION = 2018.9.20
+AG_VERSION = 2018.9.29
 
 USERNAME = megaduck
 DUCKIEBOT = megabot08
@@ -90,12 +90,7 @@ demo-real-local-rpi:
 
 evaluate-real-local:
 
-				ls # still todo
-
-				ls # image to run only camera and wheel driver nodes
-				ls # image to run inverse kinematics nodes
-				ls # image to run cnn_node
-				ls # script to evaluate in real city
+				ls # no input for this one
 
 submit:
 				ls # to be determined
