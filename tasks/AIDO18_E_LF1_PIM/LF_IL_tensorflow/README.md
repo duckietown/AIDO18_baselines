@@ -53,3 +53,20 @@ Type
 ```
 make build-real-local-laptop
 ```
+
+## Access RPi and install NCSDK v2.05 (only API)
+
+Type
+
+```
+make build-real-local-rpi
+```
+
+## Access RPi and run lane-following-demo
+
+Type
+
+```
+demo-real-local-rpi
+```
+
