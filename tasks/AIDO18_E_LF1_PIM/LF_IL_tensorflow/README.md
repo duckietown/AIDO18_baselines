@@ -28,4 +28,45 @@ Type
 
 ```
 make preprocess
-```  
+```
+
+## Train CNN
+
+Type
+
+```
+make learn
+``` 
+
+## Freeze TensorFlow graph and build image
+
+Type
+
+```
+make build-image
+```
+
+## Install NCSDK v2.05 in laptop and compile TensorFlow frozen graph to a movidius graph
+
+Type
+
+```
+make build-real-local-laptop
+```
+
+## Access RPi and install NCSDK v2.05 (only API)
+
+Type
+
+```
+make build-real-local-rpi
+```
+
+## Access RPi and run lane-following-demo
+
+Type
+
+```
+demo-real-local-rpi
+```
+
