@@ -6,6 +6,12 @@ import pandas as pd
 import os
 
 def load_data(file_path):
+    '''
+    Loads images and velocities from hdf files and checks for potential mismatch in the number of images and velocities
+
+    :param file_path: path to the hdf file from which it will extract the data
+    :return: velocities, images as numpy arrays
+    '''
 
     # read dataframes
     df_data = pd.read_hdf(file_path, key='data')
@@ -27,6 +33,16 @@ def load_data(file_path):
 
 
 def form_model_name(batch_size, lr, optimizer, epochs):
+    '''
+    Creates name of model as a string, based on the defined hyperparameters used in training
+
+    :param batch_size: batch size
+    :param lr: learning rate
+    :param optimizer: optimizer (e.g. GDS, Adam )
+    :param epochs: number of epochs
+    :return: name of model as a string
+    '''
+
     return "batch={},lr={},optimizer={},epochs={}".format(batch_size, lr, optimizer, epochs)
 
 
@@ -40,6 +56,10 @@ class CNN_training:
         self.optimizer = optimizer
 
     def backpropagation(self):
+        '''
+        Executes backpropagation during training based on the defined optimizer,learning rate and loss function
+
+        '''
 
         # define the optimizer
         with tf.name_scope("Optimizer"):
@@ -49,12 +69,22 @@ class CNN_training:
                 return tf.train.GradientDescentOptimizer(learning_rate=self.learning_rate).minimize(self.loss)
 
     def loss_function(self):
+        '''
+        Calculates the loss during training using the predicted and true values(in this case velocities)
+
+        '''
 
         # define loss function and encapsulate its scope
         with tf.name_scope("Loss"):
             return tf.reduce_mean( tf.square(self.vel_pred - self.vel_true) )
 
     def model(self, x):
+        '''
+        Define model of CNN under the TensorFlow scope "ConvNet".
+        The scope is used for better organization and visualization in TensorBoard
+
+        :return: output layer
+        '''
 
         with tf.variable_scope('ConvNet', reuse=tf.AUTO_REUSE):
 
@@ -86,6 +116,15 @@ class CNN_training:
             return hl_fc_2
 
     def epoch_iteration(self, data_size, x_data, y_data, mode):
+        '''
+        For each epoch extract batches and execute train or test step depending on the inserted mode
+
+        :param data_size: number of velocities and images
+        :param x_data: images
+        :param y_data: velocities
+        :param mode: 'train' or 'test' in order to define if backpropagation is executed as well or not
+        :return: sum of loss at each epoch
+        '''
 
         pred_loss = 0
         i = 0
@@ -155,6 +194,10 @@ class CNN_training:
             train_writer = tf.summary.FileWriter(logs_train_path, graph=tf.get_default_graph() )
             train_writer.add_graph(tf_graph)
 
+            # IMPORTANT: this is a crucial part for compiling TensorFlow graph to a Movidius one later in the pipeline.
+            # The important file to create is the 'graph.pb' which will be used to freeze the TensorFlow graph.
+            # The 'graph.pbtxt' file is just the same graph in txt format in case you want to check the format of the
+            # saved information.
             tf.train.write_graph(tf_graph.as_graph_def(), graph_path, 'graph.pbtxt', as_text= True)
             tf.train.write_graph(tf_graph.as_graph_def(), graph_path, 'graph.pb', as_text= False)
 

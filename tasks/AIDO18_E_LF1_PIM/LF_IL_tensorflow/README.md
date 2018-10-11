@@ -6,67 +6,51 @@
 For ease of use a Makefile is provided to support all steps in using this template. 
 
 
-## Installation of dependencies
+## Create new virtual environment with the dependencies
 
-Type
+Create new virtual environment and install all the necessary dependencies.
 
-```
-make install
-``` 
+Type: `make install` 
 
-## Downloading of logs
+## Download logs
 
-Type
+Search and download the logs(bag files) which are defined in the download_logs.py script.
 
-```
-make download
-```
+Type: `make download`
 
-## Preprocessing of logs by extracting into HDF5
+## Preprocessing of logs and save into HDF5 files
 
-Type
+Extract topics from bag files, synchronize images with velocities and save the data into HDF5 files.
 
-```
-make preprocess
-```
+Type: `make preprocess`
 
 ## Train CNN
 
-Type
+Train CNN using the extracted images and velocities from the logs.
 
-```
-make learn
-``` 
+Type: `make learn` 
 
 ## Freeze TensorFlow graph and build image
 
-Type
+Freeze TensorFlow graph and build docker image.
 
-```
-make build-image
-```
+Type: `make build-image`
 
-## Install NCSDK v2.05 in laptop and compile TensorFlow frozen graph to a movidius graph
+## Install NCSDK v2.05 and compile TensorFlow graph to Movidius graph
 
-Type
+Install the SDK tools of NCSDK v2.05 to enable compilation to Movidius graphs. Then, compile TensorFlow graph to Movidius graph. 
 
-```
-make build-real-local-laptop
-```
+Type: `make build-real-local-laptop`
 
 ## Access RPi and install NCSDK v2.05 (only API)
 
-Type
+Install only the SDK API in RPi, in order to be able to run Movidius graphs using the Movidius stick in RPi.
 
-```
-make build-real-local-rpi
-```
+Type: `make build-real-local-rpi`
 
 ## Access RPi and run lane-following-demo
 
-Type
+Run lane following demo using the trained CNN.
 
-```
-demo-real-local-rpi
-```
+Type: `demo-real-local-rpi`
 
