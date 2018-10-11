@@ -50,7 +50,7 @@ Type: `make build-real-local-rpi`
 
 ## Access RPi and run lane-following-demo
 
-Run lane following demo using the trained CNN
+Run lane following demo using the trained CNN.
 
 Type: `demo-real-local-rpi`
 
